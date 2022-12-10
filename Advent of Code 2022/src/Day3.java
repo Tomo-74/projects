@@ -35,20 +35,24 @@ public class Day3 {
 			int len2=secondLine.length();
 			int len3=thirdLine.length();
 			
-			char[] arr1=new char[len1];
-			char[] arr2=new char[len2];
-			char[] arr3=new char[len3];
+			ArrayList<String> aL1=new ArrayList<>();
+			ArrayList<String> aL2=new ArrayList<>();
+			ArrayList<String> aL3=new ArrayList<>();
 			char[] targetChars=new char[52];
 			
-			boolean foundMatch=false;
+			String commonChar;
+			
+			for(int i=0; i<len1; i++) { aL1.add(firstLine.substring(i,i+1)); }
+			for(int j=0; j<len2; j++) { aL2.add(secondLine.substring(j,j+1)); }
+			for(int k=0; k<len3; k++) { aL3.add(thirdLine.substring(k,k+1)); }
 
-			for(int i=0; i<len1; i++) arr1[i]=firstLine.charAt(i);
-			for(int j=0; j<len2; j++) arr1[j]=firstLine.charAt(j);
-			for(int k=0; k<len3; k++) arr1[k]=firstLine.charAt(k);
 			for(int l=0; l<targetChars.length; l++) {
-//				if(arr1.contains)
+				if(aL1.contains(targetChars[l]) && aL2.contains(targetChars[l]) && aL3.contains(targetChars[l])) {
+					commonChar=Character.targetChars[l];
+					break;
+				}
 			}
-		}
+			System.out.println(commonChar);		}
 		/*
 		for(String s : matches) {
 			char curChar=s.charAt(0);
