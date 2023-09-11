@@ -1,6 +1,6 @@
-#README
+# README
 ---
-##Description
+## Description
 Character Category Counter (ccc): counts the occurrences of specified characters in a given input.
 - Usage: ccc <inputSource> <outputSource> <categoryName targetCharacters>
 
@@ -10,8 +10,8 @@ Special characters:
 	"^"	a carrot designates capitilization folding (only when a carrot is the first character). Characters following a carrot are case-insensitive (both upper and lower case are counted).
 	"-"	a hyphen designates a character range. "0-9" designates all digits between 0 and 9, inclusive. "A-Z" designates all capital letters between A and Z, inclusive.
 
-##Compile & run instructions (Linux)
-###Installing dependencies
+## Compile & run instructions (Linux)
+### Installing dependencies
 1. Check if make is installed on your system:
 	sudo apt update
 	make -version
@@ -20,7 +20,7 @@ Special characters:
 3. Ensure make is installed in your /bin directory:
 	ls /usr/bin/make
 
-###Compilation and run
+### Compilation and run
 1. Navigate to the directory where the ccc program is stored.
 2. Compile the program by running the "make" command. This creates an object file named "ccc". 
 3. Run the object file by typing <ccc> followed by input and output sources and an even number of character categories. See run usage below.
@@ -59,7 +59,7 @@ Compilation and run example (using files):
 - Analysis of the program's memory usage can be seen with the following command: make valgrind
 
 
-##Valgrind documentation
+## Valgrind documentation
 - Program halts with no memory leaks
 
 [thomaslonowski@onyxnode56 ccc]$ make valgrind
