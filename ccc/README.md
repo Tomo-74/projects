@@ -7,13 +7,13 @@
 
 	Takes input from a text file or stdin. Allows the user to designate "character categories."
 	These categories are given unique names, and contain characters which the user would like to count in the
-	specified input. The program counts the number of hits of each "character category" in the input, and prints the 	results to a designated output file or stdout.
+	specified input. The program counts the number of hits of each "character category" in the input, and prints the results to a designated output file or stdout.
 
 	***
 	 Special characters:
 	***
-		^	a carrot designates capitilization folding (only when a carrot is the first character). Characters 			following a carrot are case-insensitive (both upper and lower case are counted).
-		-	a hyphen designates a character range. "0-9" designates all digits between 0 and 9, inclusive. "A-Z" 			designates all capital letters between A and Z, inclusive.
+		^	a carrot designates capitilization folding (only when a carrot is the first character). Characters following a carrot are case-insensitive (both upper and lower case are counted).
+		-	a hyphen designates a character range. "0-9" designates all digits between 0 and 9, inclusive. "A-Z" designates all capital letters between A and Z, inclusive.
 
 *************************************
  Compile & run instructions (Linux)
@@ -30,10 +30,10 @@ Installing dependencies
   Compilation and run
  	1. Navigate to the directory where the ccc program is stored.
 	2. Compile the program by running the "make" command. This creates an object file named "ccc". 
-	3. Run the object file by typing <ccc> followed by input and output sources and an even number of character 		categories. See run usage below.
+	3. Run the object file by typing <ccc> followed by input and output sources and an even number of character categories. See run usage below.
 		Run usage: ccc [inputSource] [outputSource] [categoryName targetCharacters]
   	
-   	To use text files as I/O sources, type the file names. To use stdin/stdout, type a hyphen (-) for both input and 	output. These methods can be mixed:
+   	To use text files as I/O sources, type the file names. To use stdin/stdout, type a hyphen (-) for both input and output. These methods can be mixed:
     		i.txt o.txt	// Using input and output text files
       		i.txt -		// Using input text file and stdout
 		- o.txt		// Using stdin and output text file
