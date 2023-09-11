@@ -3,31 +3,41 @@
 **********
 	Character Category Counter (ccc): counts the occurrences of specified characters in a given input.
 
-	Usage: ccc [inputSource] [outputSource] [categoryName targetCharacters]
+	- Usage: ccc <inputSource> <outputSource> <categoryName targetCharacters>
 
-	Takes input in the form of an input file or text from stdin. Allows the user to designate "character categories."
-	These categories can be given unique names, and contain characters which the user would like to count in the
-	specified input. Counts the number of hits of each character category in the input, and prints the results in
-	either a designated output file or stdout.
+	Takes input from a text file or stdin. Allows the user to designate "character categories."
+	These categories are given unique names, and contain characters which the user would like to count in the
+	specified input. The program counts the number of hits of each "character category" in the input, and prints the 	results to a designated output file or stdout.
 
 	***
 	 Special characters:
 	***
-		^	a carrot designates capitilization folding (only when a carrot is the first character). Characters following a carrot are case-insensitive (both upper and lower case are counted).
-		-	a hyphen designates a character range. "0-9" designates all digits between 0 and 9, inclusive. "A-Z" designates all capital letters between A and Z, inclusive.
+		^	a carrot designates capitilization folding (only when a carrot is the first character). Characters 			following a carrot are case-insensitive (both upper and lower case are counted).
+		-	a hyphen designates a character range. "0-9" designates all digits between 0 and 9, inclusive. "A-Z" 			designates all capital letters between A and Z, inclusive.
 
 *************************************
  Compile & run instructions (Linux)
 *************************************
-	1. Navigate to the directory where the program is stored ("~/.../ccc/").
-	2. Compile the program by running the "make" command. This creates an object file named "ccc" by default. 
-	3. Run the object file by typing its name ("ccc") followed by input and output sources and an even number
-	   of character categories. See usage format below.
-	
-		Usage: ccc [inputSource] [outputSource] [categoryName targetCharacters]
-	   
-	   To use files as I/O sources, type the file names. To use stdin and stdout, type a hyphen (-). These methods
-	   can be mixed (e.g. input.txt -).
+Installing dependencies
+ 	1. Check if make is installed on your system:
+		sudo apt update
+ 		make -version
+	2. If make is not installed, install it:
+		sudo apt install make
+ 	3. Ensure make is installed in your /bin directory:
+ 		ls /usr/bin/make
+
+  Compilation and run
+ 	1. Navigate to the directory where the ccc program is stored.
+	2. Compile the program by running the "make" command. This creates an object file named "ccc". 
+	3. Run the object file by typing <ccc> followed by input and output sources and an even number of character 		categories. See run usage below.
+		Run usage: ccc [inputSource] [outputSource] [categoryName targetCharacters]
+  	
+   	To use text files as I/O sources, type the file names. To use stdin/stdout, type a hyphen (-) for both input and 	output. These methods can be mixed:
+    		i.txt o.txt	// Using input and output text files
+      		i.txt -		// Using input text file and stdout
+		- o.txt		// Using stdin and output text file
+  		- -		// Using stdin and stdout
 	
 	***
 	Compilation and run example (using stdin/stdout):
@@ -55,6 +65,10 @@
 		[thomaslonowski@onyxnode56 ccc]$ cat o.txt 
 		<letters 10> <lower consonants 7> <lower vowels 3> <upperVowels 0> <digits 0>
 	
+
+- After compiling and running, project directory can be cleaned up with the following command: make clean
+- Analysis of the program's memory usage can be seen with the following command: make valgrind
+
 
 ***************************************************************
  Valgrind documentation: program halts with no memory leaks
