@@ -1,4 +1,7 @@
-# README
+# Character Chategory Counter  
+- Author: Thomas Lonowski
+- Date: Fall 2022
+
 ## Description
 **Character Category Counter** (ccc): counts the occurrences of specified characters in a given input.
 - Usage: `ccc <inputSource> <outputSource> <categoryName targetCharacters>`  
