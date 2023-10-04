@@ -1,37 +1,38 @@
 import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
- * Array implementation of a circular queue.
+ * Single linked list implementation of a circular queue.
+ * 
+ * SLL is the best way to implement a circular queue, since it can add to rear
+ * and remove from front in constant time, which are the main functions of a queue.
  *  
  * @author Thomas Lonowski
  * @param <T>	-	a generic object type
  * @date 4 October 2023
  */
 public class CircularQueue<T> {
-	private T[] array;
-	private final int DEFAULT_CAPACITY = 10;
+	private LinkedList<T> list;
 	private int head;	// Index of head element
 	private int tail;	// Index of tail element
 	
 	/**
-	 * No-param constructor to create a new empty circular queue
+	 * No-param constructor to create a new empty queue
 	 */
-	@SuppressWarnings("unchecked")
-	public CircularQueue(Class<T> type) {
-		array = (T[]) Array.newInstance(type, DEFAULT_CAPACITY);
+	public CircularQueue() {
+		list = new LinkedList<T>();
 		head = tail = 0;	// Conditions for new empty queue
 	}
 
 	/**
-	 * Parameterized constructor to create a circular queue from a provided generic array.
+	 * Parameterized constructor creates a circular queue from a provided listList 
 	 * 
-	 * @param queue	-	a generic array to make a queue with
-	 * @param head	-	the index of the first element in the array
-	 * @param tail	-	the index of the next available space in the array
+	 * @param queue	-	a generic listList to make a queue with
+	 * @param head	-	the index of the first element in the listList
+	 * @param tail	-	the index of the next available space in the listList
 	 */
-	public CircularQueue(T[] queue, int head, int tail) {
-		array = queue;
+	public CircularQueue(LinkedList<T> queue, int head, int tail) {
+		list = queue;
 		this.head = head;
 		this.tail = tail;
 	}
@@ -42,7 +43,7 @@ public class CircularQueue<T> {
 	 * @return true is elements are in the queue, false if otherwise
 	 */
 	public boolean isEmpty() {
-		return head == tail;	// The only time when (head == queue) is when the array is empty
+		return head == tail;	// The only time when (head == queue) is when the list is empty
 	}
 	
 	/**
@@ -52,10 +53,10 @@ public class CircularQueue<T> {
 	 */
 	public void enqueue(T element) {
 		try {
-			if(head == (tail+1) % array.length) throw new Exception("Queue overflow");	// Case: queue is full
+			if(head == (tail+1) % list.size()) throw new Exception("Queue overflow");	// Case: queue is full
 			else {
-				array[tail] = element;	// Insert new element
-				if(tail == array.length) tail = 1;	// Wrap around to front of array
+				list.set(tail, element);	// Insert new element
+				if(tail == list.size()) tail = 1;	// Wrap around to front of list
 				else tail++;
 			}
 		} catch(Exception e) {
@@ -74,21 +75,14 @@ public class CircularQueue<T> {
 		try {
 			if(isEmpty()) throw new Exception("Queue underflow");
 			else {
-				remove = array[head];	// Get element at front of queue
-				if(head == array.length) head = 1;	// Wrap around to front of array
+				remove = list.get(head);	// Get element at front of queue
+				if(head == list.size()) head = 1;	// Wrap around to front of list
 				else head++;
 			}
 		} catch(Exception e) {
 			System.out.println(e.toString());
 		}
 		return remove;
-	}
-	
-	/**
-	 * Returns a copy of the underlying array.
-	 */
-	public T[] getQueueArray() {
-		return Arrays.copyOf(array, array.length);
 	}
 	
 	/**

@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Test class for the CircularQueue.java, which implements the circular queue abstract 
  * data type with a generic array.
@@ -5,7 +7,7 @@
  * @author Thomas Lonowski
  *
  */
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class CircularQueueTest {
 	/**
 	 * Private utility method for printing a queue
@@ -31,26 +33,29 @@ public class CircularQueueTest {
 	 * Result: isEmpty returns true
 	 */
 	private static boolean createEmptyQueue_QueueIsEmpty() {
-		CircularQueue<Integer> q = new CircularQueue(Integer.class);
+		CircularQueue<Integer> q = new CircularQueue();
 		return q.isEmpty();
 	}
 
 	
 	/**
-	 * Initial: new queue created with parameterized constructor
+	 * Initial: new queue with values already in it
 	 * Change: none
 	 * Result: dequeued numbers are expected values
 	 */
-	private static boolean createNewQueueWithElements_QueueHasElements() {
+	private static boolean createNewQueueWithElements_ExpectedElementsArePresent() {
 		boolean retVal = false;
-		Integer[] array = {0,1,2};
-		CircularQueue<Integer> q = new CircularQueue(array,0,2);
+		LinkedList<Integer> list = new LinkedList<>();
+		list.add(-1);
+		list.add(0);
+		list.add(1);
+		CircularQueue<Integer> q = new CircularQueue(list,0,2);		// Create new queue via parameterized constructor
 		
-		Integer n1 = q.getQueueArray()[0];
-		Integer n2 = q.getQueueArray()[1];
-		Integer n3 = q.getQueueArray()[2];
+		Integer n1 = q.dequeue();
+		Integer n2 = q.dequeue();
+		Integer n3 = q.dequeue();
 		
-		if(n1==0 && n2==1 && n3==2) retVal = true;
+		if(n1==-1 && n2==0 && n3==1) retVal = true;
 		return retVal;
 	}
 	
@@ -61,11 +66,11 @@ public class CircularQueueTest {
 	 */
 	private static boolean newQueue_Enqueue1_ExpectedValue() {
 		boolean retVal = false;
-		CircularQueue<Integer> q = new CircularQueue(Integer.class);	
+		CircularQueue<Integer> q = new CircularQueue();	
 		
 		q.enqueue(0);
 		
-		if(q.getQueueArray()[0] == 0) retVal = true;
+		if(q.dequeue() == 0) retVal = true;
 		return retVal;
 	}
 	
@@ -76,12 +81,12 @@ public class CircularQueueTest {
 	 */
 	private static boolean newQueue_Enqueue2_ExpectedValues() {
 		boolean retVal = false;
-		CircularQueue<Integer> q = new CircularQueue(Integer.class);	
+		CircularQueue<Integer> q = new CircularQueue();	
 		
 		q.enqueue(1);
 		q.enqueue(-1);
 		
-		if(q.getQueueArray()[0]==1 && q.getQueueArray()[1]==-1) retVal = true;
+		if(q.dequeue()==1 && q.dequeue()==-1) retVal = true;
 		return retVal;
 	}
 	
@@ -92,7 +97,7 @@ public class CircularQueueTest {
 	 */
 	private static boolean oneElementQueue_Dequeue1_QueueIsEmpty() {
 		boolean retVal = false;
-		CircularQueue<Integer> q = new CircularQueue(Integer.class);
+		CircularQueue<Integer> q = new CircularQueue();
 		q.enqueue(100);
 		
 		q.dequeue();
@@ -109,7 +114,7 @@ public class CircularQueueTest {
 	 */
 	private static boolean oneElementQueue_Dequeue1_ExpectedValue() {
 		boolean retVal = false;
-		CircularQueue<Integer> q = new CircularQueue(Integer.class);
+		CircularQueue<Integer> q = new CircularQueue();
 		q.enqueue(-1);
 		
 		if(q.dequeue()==-1) retVal = true;
@@ -123,7 +128,7 @@ public class CircularQueueTest {
 	 */
 	private static boolean twoElementQueue_Dequeue2_QueueIsEmpty() {
 		boolean retVal = false;
-		CircularQueue<Integer> q = new CircularQueue(Integer.class);	
+		CircularQueue<Integer> q = new CircularQueue();	
 		q.enqueue(1);
 		q.enqueue(5);
 		
@@ -142,7 +147,7 @@ public class CircularQueueTest {
 	 */
 	private static boolean twoElementQueue_Dequeue2_ExpectedValues() {
 		boolean retVal = false;
-		CircularQueue<Integer> q = new CircularQueue(Integer.class);
+		CircularQueue<Integer> q = new CircularQueue();
 		q.enqueue(-1);
 		q.enqueue(0);
 		
@@ -161,8 +166,8 @@ public class CircularQueueTest {
 		else printTestResults("createEmptyQueue_QueueIsEmpty", false);
 		
 		// Test 2
-		if(createNewQueueWithElements_QueueHasElements()) printTestResults("createNewQueueWithElements_QueueHasElements", true);
-		else printTestResults("createNewQueueWithElements_QueueHasElements", false);
+		if(createNewQueueWithElements_ExpectedElementsArePresent()) printTestResults("createNewQueueWithElements_ExpectedElementsArePresent", true);
+		else printTestResults("createNewQueueWithElements_ExpectedElementsArePresent", false);
 		
 		// Test 3
 		if(newQueue_Enqueue1_ExpectedValue()) printTestResults("newQueue_Enqueue1_ExpectedValue", true);
