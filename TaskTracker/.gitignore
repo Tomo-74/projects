@@ -1,0 +1,8 @@
+# IntelliJ exclusions
+/shelf/
+.idea/
+usage.statistics.xml
+
+# SBT exclusions
+target/
+*.class
